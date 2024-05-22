@@ -62,6 +62,37 @@ class todo:
                 file.close()
                 self.text.delete(1.0, END)
 
+        def delete():
+            delete = self.main_text.curselection()
+            look = self.main_text.get(delete_)
+            with open("data.txt", "r+") as f:
+                new_f = f.readlines()
+                f.seek(0)
+
+                for line in new_f:
+                    item = str(look)
+                    if item not in line:
+                        f.write(line)
+                f.truncate()
+                self.main_text.delete(delete_)
+
+                with open("data.txt", "r") as file:
+                    read = file.readlines()
+                    for i in read:
+                        ready = i.split()
+                        self.main_text.insert(END, ready)
+                        file.close()
+
+                self.button = Button(
+                    self.root,
+                    text="Add",
+                    font="sarif, 20 bold italic ",
+                    width=10,
+                    bd=5,
+                    bg="#6CAC7F",
+                    fg="white",
+                )
+
 
 def main():
     root = Tk()
