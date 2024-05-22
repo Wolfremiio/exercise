@@ -46,7 +46,21 @@ class todo:
         self.main_text = Listbox(
             self.root, height=9, bd=3, width=23, font="ariel, 20 italic bold"
         )
-        self.main_text.place(x=280, y=100)
+        self.main_text.place(x=300, y=100)
+
+        self.text = Text(self.root, bd=5, height=2, width=30, font="ariel,10 ")
+        self.text.place(x=2, y=100)
+
+        # --------------- Add Task --------------------------------
+        # Here start my function for input my task
+        def add():
+            content = self.text.get(1.0, END)
+            self.main_text.insert(END, content)
+            with open("data.txt", "a") as file:
+                file.write(content)
+                file.seek(0)
+                file.close()
+                self.text.delete(1.0, END)
 
 
 def main():
