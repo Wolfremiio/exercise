@@ -5,7 +5,7 @@ from tkinter import ttk
 class todo:
     def __init__(self, root):
         self.root = root
-        self.root.tittle = "To-do-list"
+        self.root.title = "To-do-list"
         self.root.geometry("650x410+300+150")
 
         self.label = Label(
@@ -63,12 +63,11 @@ class todo:
                 self.text.delete(1.0, END)
 
         def delete():
-            delete = self.main_text.curselection()
+            delete_ = self.main_text.curselection()
             look = self.main_text.get(delete_)
             with open("data.txt", "r+") as f:
                 new_f = f.readlines()
                 f.seek(0)
-
                 for line in new_f:
                     item = str(look)
                     if item not in line:
@@ -90,8 +89,22 @@ class todo:
                     width=10,
                     bd=5,
                     bg="#6CAC7F",
-                    fg="white",
+                    fg="black",
+                    command=add,
                 )
+                self.button.place(x=30, y=180)
+
+                self.button2 = Button(
+                    self.root,
+                    text="Delete",
+                    font="sarif, 20 bold italic ",
+                    width=10,
+                    bd=5,
+                    bg="#6CAC7F",
+                    fg="black",
+                    command=delete,
+                )
+                self.button2.place(x=30, y=280)
 
 
 def main():
